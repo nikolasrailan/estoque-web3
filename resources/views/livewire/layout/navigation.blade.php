@@ -48,6 +48,11 @@ $logout = function (Logout $logout) {
                         {{ __('Produtos') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('saidas.index')" :active="request()->routeIs('saidas.index')" wire:navigate>
+                        {{ __('Baixa de Estoque') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

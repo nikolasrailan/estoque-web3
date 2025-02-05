@@ -6,7 +6,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UnidadeController;
 use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\SaidaProdutoController;
+use App\Http\Controllers\SaidaEstoqueController;
 
 
 Route::view('/', 'welcome');
@@ -56,9 +56,10 @@ Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogle
 
 
 
-Route::get('/saidas', [SaidaProdutoController::class, 'index'])->name('saidas.index');
-Route::get('/saidas/create', [SaidaProdutoController::class, 'create'])->name('saidas.create');
-Route::post('/saidas', [SaidaProdutoController::class, 'store'])->name('saidas.store');
+Route::get('/saidas', [SaidaEstoqueController::class, 'index'])->name('saidas.index');
+Route::get('/saidas/create', [SaidaEstoqueController::class, 'create'])->name('saidas.create');
+Route::post('/saidas', [SaidaEstoqueController::class, 'store'])->name('saidas.store');
+Route::resource('saidas', SaidaEstoqueController::class);
 
 
 Route::view('dashboard', 'dashboard')

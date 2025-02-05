@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +8,7 @@ class SaidaEstoque extends Model
 {
     use HasFactory;
 
+    protected $table = 'saidas_estoque'; 
     protected $fillable = [
         'cliente_id',
         'produto_id',
@@ -19,11 +19,11 @@ class SaidaEstoque extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 
     public function produto()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Produto::class, 'produto_id');
     }
 }
