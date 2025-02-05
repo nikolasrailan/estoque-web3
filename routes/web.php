@@ -6,6 +6,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UnidadeController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\SaidaProdutoController;
+
 
 Route::view('/', 'welcome');
 
@@ -51,6 +53,12 @@ Route::resource('produtos', ProdutoController::class)->names([
 
 Route::get('/socialite/google', [SocialLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback'])->name('google.callback');
+
+
+
+Route::get('/saidas', [SaidaProdutoController::class, 'index'])->name('saidas.index');
+Route::get('/saidas/create', [SaidaProdutoController::class, 'create'])->name('saidas.create');
+Route::post('/saidas', [SaidaProdutoController::class, 'store'])->name('saidas.store');
 
 
 Route::view('dashboard', 'dashboard')
