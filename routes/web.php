@@ -9,6 +9,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SaidaEstoqueController;
 
 
+
 Route::view('/', 'welcome');
 
 Route::resource('clientes', ClienteController::class)->names([

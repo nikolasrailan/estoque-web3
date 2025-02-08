@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SaidaEstoque;
 use App\Models\Produto;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Route;
 
 
 class SaidaEstoqueController extends Controller
