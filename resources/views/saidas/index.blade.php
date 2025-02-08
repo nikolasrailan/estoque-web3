@@ -34,6 +34,7 @@
                           <tbody>
                             @foreach($saidas as $saida)
                             <tr>
+                                <td>{{ $saida->id }}</td>
                                 <td>{{ $saida->cliente->nome }}</td>
                                 <td>{{ $saida->produto->nome }}</td>
                                 <td>{{ $saida->quantidade }}</td>
