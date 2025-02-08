@@ -7,6 +7,7 @@ use App\Models\SaidaEstoque;
 use App\Models\Produto;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
+
 class SaidaEstoqueController extends Controller
 {
     public function index()
@@ -51,8 +52,8 @@ class SaidaEstoqueController extends Controller
         $produto->decrement('estoque', $request->quantidade);
 
         // Gerar QR Code
-        $qrcode = QrCode::size(200)->generate(json_encode($saida));
+        $qrCode = QrCode::size(200)->generate(json_encode($saida));
 
-        return view('saidas.qrcode', compact('saida', 'qrcode'));
+        return view('saidas.qrcode', compact('saida', 'qrCode'));
     }
 }

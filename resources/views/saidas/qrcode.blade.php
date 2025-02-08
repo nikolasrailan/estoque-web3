@@ -1,14 +1,9 @@
-@extends('layouts.app')
-
-@section('content')
-<h2>Saída Registrada</h2>
-<p>Cliente: {{ $saida->cliente->nome }}</p>
-<p>Produto: {{ $saida->produto->nome }}</p>
-<p>Quantidade: {{ $saida->quantidade }}</p>
-<p>Valor Total: R$ {{ number_format($saida->valor_total, 2, ',', '.') }}</p>
-<p>Data: {{ $saida->data_hora }}</p>
-
-<h3>QR Code</h3>
-{!! $qrcode !!}
-<a href="{{ route('saidas.index') }}">Voltar</a>
-@endsection
+<x-app-layout>
+  <div class="container mt-4">
+      <h3 class="text-center">Saída registrada com sucesso!</h3>
+      <div class="text-center mt-3">
+          {!! $qrCode !!}
+      </div>
+      <a href="/saidas" class="btn btn-primary mt-3">Voltar</a>
+  </div>
+</x-app-layout>
