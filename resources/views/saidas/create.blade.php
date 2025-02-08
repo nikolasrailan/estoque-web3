@@ -40,8 +40,15 @@
                 
                     <div class="form-group">
                         <label for="quantidade">Quantidade</label>
-                        <input type="number" class="form-control" id="quantidade" name="quantidade" required min="1">
+                        <input type="number" class="form-control @error('quantidade') is-invalid @enderror" id="quantidade" name="quantidade" required min="1">
+                        
+                        @error('quantidade')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
+                    
                 
                     <div class="form-group">
                         <label for="valor_total">Valor Total</label>
