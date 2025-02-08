@@ -16,6 +16,7 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
     'aliases' => [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Route'     => "Illuminate\Support\Facades\Route",
     ],
 
     /*

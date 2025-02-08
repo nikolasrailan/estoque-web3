@@ -60,7 +60,7 @@ Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogle
 Route::get('/saidas', [SaidaEstoqueController::class, 'index'])->name('saidas.index');
 Route::get('/saidas/create', [SaidaEstoqueController::class, 'create'])->name('saidas.create');
 Route::post('/saidas', [SaidaEstoqueController::class, 'store'])->name('saidas.store');
-Route::resource('saidas', SaidaEstoqueController::class);
+// Route::resource('saidas', SaidaEstoqueController::class);
 
 
 Route::view('dashboard', 'dashboard')
