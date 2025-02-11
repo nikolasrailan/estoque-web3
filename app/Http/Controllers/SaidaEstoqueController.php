@@ -57,4 +57,7 @@ class SaidaEstoqueController extends Controller
 
         return view('saidas.qrcode', compact('saida', 'qrCode'));
     }
+
+    
+
 }

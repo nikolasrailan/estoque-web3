@@ -31,6 +31,9 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'providers' => [
+        Barryvdh\DomPDF\ServiceProvider::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------

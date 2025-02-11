@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UnidadeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SaidaEstoqueController;
+use App\Http\Controllers\RelatoriosController;
 
 
 
@@ -61,6 +62,18 @@ Route::get('/saidas', [SaidaEstoqueController::class, 'index'])->name('saidas.in
 Route::get('/saidas/create', [SaidaEstoqueController::class, 'create'])->name('saidas.create');
 Route::post('/saidas', [SaidaEstoqueController::class, 'store'])->name('saidas.store');
 // Route::resource('saidas', SaidaEstoqueController::class);
+
+
+Route::get('/relatorios', [RelatoriosController::class, 'index'])->name('relatorios.index');
+Route::get('/relatorios/retiradas-periodo', [RelatoriosController::class, 'relatorioRetiradasPorPeriodo'])->name('relatorios.retiradas.periodo');
+Route::get('/relatorios/retiradas-cliente', [RelatoriosController::class, 'relatorioRetiradasPorCliente'])->name('relatorios.retiradas.cliente');
+Route::get('/relatorios/produtos-sem-estoque', [RelatorioController::class, 'gerarRelatorioProdutosSemEstoque'])
+    ->name('relatorios.produtos.sem_estoque');
+
+Route::get('/relatorios/produtos-sem-estoque/pdf', [RelatorioController::class, 'gerarPDFProdutosSemEstoque'])
+    ->name('relatorios.produtos.sem_estoque.pdf');
+
+Route::get('/relatorios/produtos-com-estoque', [RelatoriosController::class, 'relatorioProdutosComEstoque'])->name('relatorios.produtos.com_estoque');
 
 
 Route::view('dashboard', 'dashboard')

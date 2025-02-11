@@ -71,6 +71,10 @@ $logout = function (Logout $logout) {
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('relatorios.index')" wire:navigate>
+                            {{ __('Relatorios') }}
+                        </x-dropdown-link>
+                        
                         <x-dropdown-link :href="route('profile')" wire:navigate>
                             {{ __('Perfil') }}
                         </x-dropdown-link>
