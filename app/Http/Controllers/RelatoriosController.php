@@ -7,7 +7,7 @@ use App\Models\SaidaEstoque;
 use App\Models\Produto;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Route;
-
+use Barryvdh\DomPDF\Facade as Pdf;
 
 class RelatoriosController extends Controller
 {
@@ -21,7 +21,7 @@ class RelatoriosController extends Controller
         $periodo = $request->input('periodo', 'diario'); // Padrão: diário
 
         $query = SaidaEstoque::with('produto', 'cliente')
-            ->selectRaw('produto_id, cliente_id, SUM(quantidade) as total_quantidade, 
+            ->selectRaw('produto_id, cliente_id, SUM(estoque) as total_quantidade, 
                         SUM(valor_total) as total_valor, DATE(data_hora) as data')
             ->groupBy('produto_id', 'cliente_id', 'data_hora');
 
@@ -39,7 +39,7 @@ class RelatoriosController extends Controller
     public function relatorioRetiradasPorCliente()
     {
         $relatorio = SaidaEstoque::with('produto', 'cliente')
-            ->selectRaw('cliente_id, produto_id, SUM(quantidade) as total_quantidade, 
+            ->selectRaw('cliente_id, produto_id, SUM(estoque) as total_quantidade, 
                          SUM(valor_total) as total_valor, DATE(data_hora) as data')
             ->groupBy('cliente_id', 'produto_id', 'data_hora')
             ->get();
@@ -49,34 +49,23 @@ class RelatoriosController extends Controller
 
     public function relatorioProdutosComEstoque()
     {
-        $produtos = Produto::select('id', 'nome', 'unidade', 'categoria', 'quantidade_disponivel', 'quantidade_inicial')
-            ->get()
-            ->map(function ($produto) {
-                $produto->percentual_estoque = ($produto->quantidade_disponivel / $produto->quantidade_inicial) * 100;
-                return $produto;
-            });
-    
+        $produtos = Produto::where('estoque', '>', 0) // Apenas produtos com estoque maior que 0
+            ->select('id', 'nome', 'id_unidade', 'id_categoria', 'estoque')
+            ->get();
+
         return view('relatorios.produtos_com_estoque', compact('produtos'));
     }
+
+
+
     public function gerarRelatorioProdutosSemEstoque()
-{
-    // Busca produtos com estoque zerado e data em que zeraram
-    $produtos = Produto::where('quantidade', 0)
-        ->orderBy('data_estoque_zero', 'desc') 
-        ->get();
+    {
+        // Busca produtos com estoque zerado e data em que zeraram
+        $produtos = Produto::where('estoque', 0)
+            ->orderBy('created_at', 'desc') 
+            ->get();
 
-    return view('relatorios.produtos_sem_estoque', compact('produtos'));
-}
-
-public function gerarPDFProdutosSemEstoque()
-{
-    $produtos = Produto::where('quantidade', 0)
-        ->orderBy('data_estoque_zero', 'desc') 
-        ->get();
-
-    $pdf = Pdf::loadView('relatorios.produtos_sem_estoque', compact('produtos'));
-
-    return $pdf->download('relatorio_produtos_sem_estoque.pdf');
-}
+        return view('relatorios.produtos_sem_estoque', compact('produtos'));
+    }
 
 }

@@ -21,15 +21,15 @@
                         <h3 class="mb-4">Selecione um Relatório</h3>
   
                         <div class="d-flex flex-column gap-3">
-                            <a href="{{ route('relatorios.retiradas.periodo') }}" class="btn btn-secondary">
+                            <a href="{{ route('relatorios.retiradas.periodo') }}" class="btn btn-secondary mb-3">
                                 Relatório de Retiradas por Período
                             </a>
   
-                            <a href="{{ route('relatorios.retiradas.cliente') }}" class="btn btn-primary">
+                            <a href="{{ route('relatorios.retiradas.cliente') }}" class="btn btn-primary mb-3">
                                 Relatório de Retiradas por Cliente
                             </a>
   
-                            <a href="{{ route('relatorios.produtos.sem_estoque.pdf') }}" class="btn btn-secondary">
+                            <a href="{{ route('relatorios.produtos.sem_estoque') }}" class="btn btn-secondary mb-3">
                                 Relatório de Produtos Sem Estoque
                             </a>
   

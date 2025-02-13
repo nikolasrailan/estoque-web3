@@ -67,10 +67,10 @@ Route::post('/saidas', [SaidaEstoqueController::class, 'store'])->name('saidas.s
 Route::get('/relatorios', [RelatoriosController::class, 'index'])->name('relatorios.index');
 Route::get('/relatorios/retiradas-periodo', [RelatoriosController::class, 'relatorioRetiradasPorPeriodo'])->name('relatorios.retiradas.periodo');
 Route::get('/relatorios/retiradas-cliente', [RelatoriosController::class, 'relatorioRetiradasPorCliente'])->name('relatorios.retiradas.cliente');
-Route::get('/relatorios/produtos-sem-estoque', [RelatorioController::class, 'gerarRelatorioProdutosSemEstoque'])
+Route::get('/relatorios/produtos-sem-estoque', [RelatoriosController::class, 'gerarRelatorioProdutosSemEstoque'])
     ->name('relatorios.produtos.sem_estoque');
 
-Route::get('/relatorios/produtos-sem-estoque/pdf', [RelatorioController::class, 'gerarPDFProdutosSemEstoque'])
+Route::get('/relatorios/produtos-sem-estoque/pdf', [RelatoriosController::class, 'gerarPDFProdutosSemEstoque'])
     ->name('relatorios.produtos.sem_estoque.pdf');
 
 Route::get('/relatorios/produtos-com-estoque', [RelatoriosController::class, 'relatorioProdutosComEstoque'])->name('relatorios.produtos.com_estoque');
