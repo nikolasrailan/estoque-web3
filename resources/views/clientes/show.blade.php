@@ -6,7 +6,7 @@
 <x-app-layout>
     <x-slot name="header">
     <div class="d-flex justify-content-between align-items-center">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-900 leading-tight">
             Detalhes do Cliente {{$cliente->nome}}
         </h2>
         <a href="{{ route('clientes.index') }}"><button class="btn btn-info">Voltar para a Lista</button></a>
@@ -16,7 +16,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 text-lg" >
+                <div class="p-6 text-gray-900 dark:text-gray-900 text-lg" >
                     <div class="form-container">
                         <!-- Exibindo os detalhes do cliente -->
                         <div class="mb-4">
