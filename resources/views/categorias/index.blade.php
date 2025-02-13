@@ -25,7 +25,9 @@
                                     <th>#</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
-                                    <th>Ações</th>
+                                    <th>Ações @if(session('error'))
+                                        <span style="color: red; margin-top: 5px;">{{ session('error') }}</span>
+                                    @endif</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,9 +44,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Excluir</button>
                                             </form>
-                                            @if(session('error'))
-                                            <p style="color: red; margin-top: 5px;">{{ session('error') }}</p>
-                                        @endif
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

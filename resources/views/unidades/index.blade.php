@@ -25,7 +25,10 @@
                                     <th>#</th>
                                     <th>Sigla</th>
                                     <th>Descrição</th>
-                                    <th>Ações</th>
+                                    <th>Ações @if(session('error'))
+                                        <span style="color: red; margin-top: 5px;">{{ session('error') }}</span>
+                                    @endif</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +44,9 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Excluir</button>
+                                                
                                             </form>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

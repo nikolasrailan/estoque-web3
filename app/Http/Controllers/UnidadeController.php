@@ -77,9 +77,20 @@ class UnidadeController extends Controller
      */
     public function destroy(Unidade $unidade)
     {
-        $unidade->delete();
-
+        try {
+            $unidade->delete();
             return redirect()->route('unidades.index')
-                            ->with('success', 'Unidade excluída com sucesso!');
+                                ->with('success', 'Unidade excluída com sucesso!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == 23000) {
+                return redirect()->route('unidades.index')
+                                ->with('error', 'Erro, unidade vinculada');
+            }
+            
+            // Em caso de outro erro, você pode capturar ou logar
+            return redirect()->route('unidade.index')
+                            ->with('error', 'Erro ao tentar excluir a unidade.');
+        }
+        
     }
 }
