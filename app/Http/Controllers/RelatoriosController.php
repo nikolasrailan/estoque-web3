@@ -41,11 +41,12 @@ class RelatoriosController extends Controller
         $relatorio = SaidaEstoque::with('produto', 'cliente', 'produto.unidade', 'produto.categoria')
             ->selectRaw('cliente_id, produto_id, SUM(quantidade) as total_quantidade, 
                         SUM(valor_total) as total_valor, DATE(data_hora) as data')
-            ->groupBy('cliente_id', 'produto_id', 'data_hora')
+            ->groupBy('cliente_id', 'produto_id', 'data') // Aqui mudou de 'data_hora' para 'data'
             ->get();
-        
+
         return view('relatorios.retiradas_cliente', compact('relatorio'));
     }
+
 
 
     public function relatorioProdutosComEstoque()
