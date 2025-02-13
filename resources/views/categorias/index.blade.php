@@ -42,6 +42,9 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Excluir</button>
                                             </form>
+                                            @if(session('error'))
+                                            <p style="color: red; margin-top: 5px;">{{ session('error') }}</p>
+                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach

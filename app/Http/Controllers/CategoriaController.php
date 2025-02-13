@@ -62,10 +62,22 @@
         // Exclui uma categoria
         public function destroy(Categoria $categoria)
         {
-            $categoria->delete();
-
-            return redirect()->route('categorias.index')
-                            ->with('success', 'Categoria excluída com sucesso!');
+            try {
+                $categoria->delete();
+                return redirect()->route('categorias.index')
+                                ->with('success', 'Categoria excluída com sucesso!');
+            } catch (\Illuminate\Database\QueryException $e) {
+                // Verifica se é a violação de chave estrangeira (erro 1451)
+                if ($e->getCode() == 23000) {
+                    return redirect()->route('categorias.index')
+                                    ->with('error', 'Erro, categoria vinculada');
+                }
+                
+                // Em caso de outro erro, você pode capturar ou logar
+                return redirect()->route('categorias.index')
+                                ->with('error', 'Erro ao tentar excluir a categoria.');
+            }
         }
+
 
     }
